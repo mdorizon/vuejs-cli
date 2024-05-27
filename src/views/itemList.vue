@@ -26,6 +26,7 @@
         <div class="card" v-for="item in itemList" :key="item.id">
             <img :src="item.image" alt="">
             <h2>{{ item.title }}</h2>
+            <RouterLink :to='`/product/${item.id}`'>view product</RouterLink>
         </div>
     </div>
 </template>

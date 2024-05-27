@@ -7,4 +7,8 @@
   </nav>
 
   <RouterView />
+
+  <div class="basket">
+    
+  </div>
 </template>

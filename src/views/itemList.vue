@@ -4,7 +4,6 @@
     const title = ref('Hello Vuejs')
   //create ref to store all items
     const itemList = ref([])
-    const itemBuyList = ref([])
   //fetch all items on mounted app (https://fakestoreapi.com/products)
     const fetchAllItems = computed(async () => {
     const response = await fetch('https://fakestoreapi.com/products')
@@ -23,18 +22,13 @@
 <template>
     <h1>{{ title }}</h1>
 
-    <ul>
-        <li v-for="item in itemBuyList" :key="item.id">
-            <h2>{{ item.title }}</h2>
-        </li>
-    </ul>
-
     <div class="item-list">
         <div class="card" v-for="item in itemList" :key="item.id">
             <img :src="item.image" alt="">
             <h2>{{ item.title }}</h2>
+            <p>{{ item.price }} €</p>
             <RouterLink :to='`/product/${item.id}`'>view product</RouterLink>
-            <button @click="itemBuyList.push(item)">Ajouter au panier</button>
+            <button @click="$emit('add-item', {id: item.id, title: item.title, price: item.price})">Ajouter au panier</button>
         </div>
     </div>
 </template>
